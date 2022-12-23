@@ -19,22 +19,17 @@ from sklearn.model_selection import train_test_split
 
 # np.save('train.npy', train)
 train=np.load('train.npy')
-
-train.shape
-
+# print(train.shape)
 
 y_data=train[:,0]
-y_data.shape
+# print(y_data.shape)
 
 x_data=train[:,1:]
-x_data.shape
 
-
-x2=x_data.reshape([462,257,395,1])
+x_data=x_data.reshape([462,257,395,1])
 
 # do train test split 
-x_train, x_test, y_train, y_test = train_test_split(x2, y_data, test_size=0.15, random_state=22)
-
+x_train, x_test, y_train, y_test = train_test_split(x_data, y_data, test_size=0.15, random_state=22)
 
 # x_train.shape
 # y_train.shape
@@ -70,13 +65,13 @@ model.compile(optimizer='adam',
               metrics=['accuracy'])
 
 
-
-for ii in range(0,5):
+num_epochs=40
+for ii in range(0,num_epochs):
     model.fit(x_train, y_train, epochs=1)
     model.evaluate(x_test,  y_test, verbose=2)
 
 
-model.save('C:/Users/dgnhk_000/Downloads/ARSU 2017/20170330_Uhu/Waldschnepfe_recog/my_model_epochs6_v2.h5')
+model.save('C:/Users/dgnhk_000/Downloads/ARSU 2017/20170330_Uhu/Waldschnepfe_recog/my_model_epochs36_v2.h5')
 
 y_predict=model.predict(x_test)
 
@@ -87,7 +82,7 @@ y_pred
 
 from sklearn.metrics import confusion_matrix
 confusion_mtx = confusion_matrix(y_test, y_pred) 
-confusion_mtx
+print(confusion_mtx)
 
 
 model.save('C:/Users/dgnhk_000/Downloads/ARSU 2017/20170330_Uhu/Waldschnepfe_recog/my_model_epochs20.h5')
