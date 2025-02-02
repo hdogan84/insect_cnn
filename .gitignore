@@ -1,5 +1,6 @@
 # Data folder
 data/
+old_notebooks/
 
 # Source files
 src/tools/
