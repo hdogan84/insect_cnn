@@ -1,7 +1,8 @@
 # Data folder
 data/
 old_notebooks/
-modelss/
+
+models/
 
 # Source files
 src/
