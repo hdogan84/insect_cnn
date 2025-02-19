@@ -6,3 +6,4 @@ models/
 
 # Source files
 src/tools.py
+src/__pycache__/
