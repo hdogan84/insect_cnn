@@ -14,8 +14,8 @@ import birdnet_analyzer
 import subprocess
 
 
-audio_folder = str(user_root) + '/Woodcock-CNN/data/train_data/audio/1/'
-embedding_folder = str(user_root) + '/Woodcock-CNN/data/train_data/embedding/birdnet/1'
+audio_folder = str(user_root) + '/Woodcock-CNN/data/train_data/audio/0/'
+embedding_folder = str(user_root) + '/Woodcock-CNN/data/train_data/embedding/birdnet/0'
 
 
 subprocess.run(
