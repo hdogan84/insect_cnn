@@ -1,6 +1,7 @@
 # Data folder
 data/
 old_notebooks/
+own_cnn/
 reports/
 
 models/
