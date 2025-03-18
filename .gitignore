@@ -7,5 +7,5 @@ reports/
 models/
 
 # Source files
-src/tools.py
-src/__pycache__/
+src/own_spec.py
+src/__pycache__
