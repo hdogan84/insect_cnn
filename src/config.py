@@ -1,4 +1,9 @@
 #################
+# Example Config file from BirdNet. Not used in the 
+# current repository at all 
+#################
+
+#################
 # Misc settings #
 #################
 
