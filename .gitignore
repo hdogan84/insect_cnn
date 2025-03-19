@@ -8,4 +8,5 @@ models/
 
 # Source files
 src/own_spec.py
+src/audio_to_image.py
 src/__pycache__

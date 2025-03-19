@@ -44,22 +44,6 @@ def extract_audio(sig, rate, begin_times, base_folder, main_wav, length):
 
 
 
-def audio_to_image(audio_path, Nfft, N_overlap, resize_tuple):
-    (sig, rate) = librosa.load(audio_path, sr=None, mono=True)
-    f, t, Syy = signal.stft(sig,fs=rate,window='hann',noverlap=N_overlap,nfft=Nfft,nperseg=Nfft)
-    Syy=abs(Syy) * 33 #apply amplification
-    Syy=20*np.log10(Syy/0.00002)
-    Syy[Syy<0.0] = 0.0
-    Syy = Syy / Syy.max() #normalize to [0, 1]
-    Syy *= 255
-
-    Syy_3d = np.stack([Syy] * 3, axis=-1)
-    
-    Syy_3d = cv2.flip(Syy_3d, 0)
-    image = cv2.resize(Syy_3d, resize_tuple)
-
-    return image
-
 
 def get_embedding_birdnet(root_folder, pos_or_neg):
     
