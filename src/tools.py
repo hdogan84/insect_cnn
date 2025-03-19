@@ -44,7 +44,6 @@ def extract_audio(sig, rate, begin_times, base_folder, main_wav, length):
 
 
 
-
 def get_embedding_birdnet(root_folder, pos_or_neg):
     
     features = []
