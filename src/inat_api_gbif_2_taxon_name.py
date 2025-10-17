@@ -33,6 +33,12 @@ def get_urls_from_api(taxa_id:int, page_num: int = 1, per_page: int = 5):
         "page": page_num,
         "order_by": "created_at"
     }
+
+    url = "https://api.inaturalist.org/v1/taxa"
+    params = {
+        "external_id": taxa_id,   
+    }
+
     response = requests.get(url, params=params)
     data = response.json()
     

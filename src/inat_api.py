@@ -67,6 +67,12 @@ if __name__ == '__main__':
         "page": 1, # starts from 1, not 0
         "order_by": "created_at"
     }
+
+    url = "https://api.inaturalist.org/v1/taxa"
+    params = {
+        "taxon_name": "Carabus_auratus",   # Insects
+    }
+
     response = requests.get(url, params=params)
     data = response.json()
 
@@ -77,7 +83,9 @@ if __name__ == '__main__':
     print(data["page"])
     print(len(data["results"]))
     print(data["results"][0].keys())
-    print(data["results"][0]["taxon"]["name"])
+    print(data["results"][0]["iconic_taxon_id"])
+    print(data["results"][0]["observations_count"])
+    print(data["results"][0]["preferred_common_name"])
     #print(data["results"][0]["photos"])
 
    
@@ -90,7 +98,7 @@ if __name__ == '__main__':
         print(obs["time_observed_at"])
         print(obs["quality_metrics"])"""
     
-    print(data["results"][0]["photos"][0].keys())
+    #print(data["results"][0]["photos"][0].keys())
     
     
     
