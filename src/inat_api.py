@@ -64,7 +64,7 @@ if __name__ == '__main__':
     params = {
         "taxon_id": 84640,   # Insects
         "per_page": 5, # Max per page seems to be 200
-        "page": 10,
+        "page": 1, # starts from 1, not 0
         "order_by": "created_at"
     }
     response = requests.get(url, params=params)
@@ -77,17 +77,18 @@ if __name__ == '__main__':
     print(data["page"])
     print(len(data["results"]))
     print(data["results"][0].keys())
+    print(data["results"][0]["taxon"]["name"])
     #print(data["results"][0]["photos"])
 
-
-    for obs in data["results"]:
+   
+    """for obs in data["results"]:
         #print(obs["id"], obs["species_guess"], obs["photos"])
         #print(obs["id"])
         print(len(obs["photos"]))
         print(obs["species_guess"])
         print(obs["quality_grade"])
         print(obs["time_observed_at"])
-        print(obs["quality_metrics"])
+        print(obs["quality_metrics"])"""
     
     print(data["results"][0]["photos"][0].keys())
     
