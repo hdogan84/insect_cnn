@@ -26,10 +26,10 @@ from PIL import Image
 
 # Webdriver for Firefox downloaded with GeckoDriverManager. For other browsers, search for the specific webdriver service
 # https://github.com/mozilla/geckodriver/releases
-DRIVER_PATH = r'/usr/local/bin/geckodriver'
+DRIVER_PATH = r'C:\Users\dgnhk\Downloads\geckodriver-v0.36.0-win64\geckodriver.exe'
 
 
-def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int = 10):
+def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int = 5):
     """Find and store the image urls.
     
     :param query: Species ID to complete the url.
@@ -50,14 +50,17 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int 
          
     # Build the search query 
     # Only load fotos marked with Research Grade and CC-BY-NC copyright
-    page_num = 12 # current page number
+    page_num = 1 # current page number
     if page_num == 1:
         search_url = f"https://www.inaturalist.org/observations?photo_license=CC-BY-NC&place_id=any&quality_grade=research&subview=table&taxon_id={query}"
     else:
         search_url = f"https://www.inaturalist.org/observations?page={page_num}&photo_license=CC-BY-NC&place_id=any&quality_grade=research&subview=table&taxon_id={query}"
     
     # Just for Sarcophaga carnaria
-    #search_url = "https://www.inaturalist.org/observations?preferred_place_id=7207&quality_grade=research&subview=table&taxon_id=124550"
+    search_url = "https://www.inaturalist.org/observations?preferred_place_id=7207&quality_grade=research&subview=table&taxon_id=124550"
+
+    search_url = "https://www.inaturalist.org/observations?taxon_name=Sarcophaga_carnaria&quality_grade=research&subview=table"
+
 
     wd.get(search_url)
     time.sleep(sleep)  
@@ -233,15 +236,7 @@ def search_and_download(search_term:str, target_path = './', number_images = 10)
 
     # Store image urls
     # Note: On the first run, install driver with GeckoDriverManager().install() instead of DRIVER_PATH
-    #service = Service(GeckoDriverManager().install())
-    #with webdriver.Firefox(service = service) as wd:
-    #    res = fetch_image_urls(search_term, number_images, wd = wd)
-
-    service = Service('/usr/local/bin/geckodriver')  # Or just 'geckodriver' if in PATH
-    options = webdriver.FirefoxOptions()
-    options.headless = True 
-
-    with webdriver.Firefox(service = service, options=options) as wd:
+    with webdriver.Firefox(service = Service(DRIVER_PATH)) as wd:
         res = fetch_image_urls(search_term, number_images, wd = wd)
 
         
@@ -305,8 +300,9 @@ if __name__ == '__main__':
         
         print('\n******** ' + spec + ' ********\n')
         search_and_download(search_term = str(ind),
-                            target_path = '/home/hakandogan/projects/Insect-CNN/data/image_data/' + spec,
-                            number_images = 1)
+                            #target_path = 'Z:\data\Bees\\' + spec, 
+                            target_path = 'C:\\Users\\dgnhk\\insect_cnn\\data\\image_data\\' + spec,
+                            number_images = 100)
     
     
     
