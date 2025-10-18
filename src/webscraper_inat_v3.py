@@ -22,6 +22,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from webdriver_manager.firefox import GeckoDriverManager
 from PIL import Image
+import pandas as pd
 
 
 # Webdriver for Firefox downloaded with GeckoDriverManager. For other browsers, search for the specific webdriver service
@@ -164,16 +165,12 @@ def search_and_download(search_term:str, target_path = './', number_images = 10)
     :param number_images: Number of images to be downloaded. Defaults to 10.
     :type number_images: int, optional
     """
-    
-    # Create downloading path, if not already existant
-    if not os.path.exists(target_path):
-        os.makedirs(target_path)
 
-    # Store image urls
     # Note: On the first run, install driver with GeckoDriverManager().install() instead of DRIVER_PATH
     with webdriver.Firefox(service = Service(DRIVER_PATH)) as wd:
         res, taxon_id = fetch_image_urls(search_term, number_images, wd = wd)
 
+    return taxon_id
         
   
 if __name__ == '__main__':
@@ -226,15 +223,24 @@ if __name__ == '__main__':
         #(124145, 'Xylocopa_violacea')
     ]
 
-    for ind, spec in ind_spec:
+    df = pd.read_csv("../webapp_species/gbif_specie.csv")
+
+    df["taxon_id"] = 0
+
+    for ind, row in df.iterrows():
         
+        spec = row["Latine_name"].replace(" ","_")
+
         print('\n******** ' + spec + ' ********\n')
-        search_and_download(search_term = str(spec),
+        taxa_id = search_and_download(search_term = str(spec),
                             target_path = 'C:\\Users\\dgnhk\\insect_cnn\\data\\image_data\\' + spec,
                             number_images = 2)
     
+        df.at[ind,"taxon_id"] = int(taxa_id)
+
     
-    
+    df["taxon_id"] = df["taxon_id"].astype(int)
+    df.to_csv("../webapp_species/gbif_specie_taxon.csv", index=False)
     
     
     
