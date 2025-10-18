@@ -28,6 +28,7 @@ from PIL import Image
 # https://github.com/mozilla/geckodriver/releases
 DRIVER_PATH = r'C:\Users\dgnhk\Downloads\geckodriver-v0.36.0-win64\geckodriver.exe'
 
+DRIVER_PATH = r'C:\Users\dgnhk\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe'
 
 def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int = 5):
     """Find and store the image urls.
@@ -59,7 +60,7 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int 
     # Just for Sarcophaga carnaria
     search_url = "https://www.inaturalist.org/observations?preferred_place_id=7207&quality_grade=research&subview=table&taxon_id=124550"
 
-    search_url = "https://www.inaturalist.org/observations?taxon_name=Sarcophaga_carnaria&quality_grade=research&subview=table"
+    search_url = f"https://www.inaturalist.org/observations?taxon_name={query}&quality_grade=research&subview=table"
 
 
     wd.get(search_url)
@@ -299,10 +300,9 @@ if __name__ == '__main__':
     for ind, spec in ind_spec:
         
         print('\n******** ' + spec + ' ********\n')
-        search_and_download(search_term = str(ind),
-                            #target_path = 'Z:\data\Bees\\' + spec, 
+        search_and_download(search_term = str(spec),
                             target_path = 'C:\\Users\\dgnhk\\insect_cnn\\data\\image_data\\' + spec,
-                            number_images = 100)
+                            number_images = 6)
     
     
     
