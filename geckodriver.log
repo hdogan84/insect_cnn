@@ -1,0 +1,6 @@
+1760780013712	geckodriver	INFO	Listening on 127.0.0.1:46421
+1760780014926	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "44523" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileyA59a2"
+Error: no DISPLAY environment variable specified
+1760780452255	geckodriver	INFO	Listening on 127.0.0.1:56545
+1760780453482	mozrunner::runner	INFO	Running command: MOZ_CRASHREPORTER="1" MOZ_CRASHREPORTER_NO_REPORT="1" MOZ_CRASHREPORTER_SHUTDOWN="1" "/usr/bin/firefox" "--m ... te" "--remote-debugging-port" "33287" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "/tmp/rust_mozprofileNYMgzC"
+Error: no DISPLAY environment variable specified
