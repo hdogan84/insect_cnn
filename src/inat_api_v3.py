@@ -6,6 +6,10 @@ and a target folder where the images should be downloaded.
 
 """
 
+"""
+use python scraper env
+"""
+
 
 # Import libraries
 import time
