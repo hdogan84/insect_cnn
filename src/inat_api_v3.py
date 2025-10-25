@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
     df = pd.read_csv("../webapp_species/gbif_specie_taxon.csv")
 
-    page_num = 3
+    page_num = 1
     per_page = 200
 
     for ind, row in df.iloc[0:].iterrows():
