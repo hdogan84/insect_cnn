@@ -28,17 +28,11 @@ from tools.metrics import AveragePrecisionCallback
 
 # Note: Use conda tf-gpu environment. Copy of exp10 with more data (page 3 in api request)
 
-# In[5]:
-
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
 spec_dir = '../data/image_data/'
-sample_dir = '../data/image_data/Polistes_dominula/'
-
-paths_sample_plot = [join(sample_dir, f) for f in listdir(sample_dir) if isfile(join(sample_dir, f))]
-
 
 
 num_classes = 130
@@ -112,8 +106,7 @@ model.add(Dense(units=1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 
-# In[20]:
-
+# Callbacks
 
 early_stopping = callbacks.EarlyStopping(monitor = 'val_accuracy',
                                          patience = 10,
@@ -130,22 +123,18 @@ lr_plateau = callbacks.ReduceLROnPlateau(monitor = 'val_accuracy',
 
 
 
-optimizer = Adam(learning_rate=0.001)
-
-
 
 ap_callback = AveragePrecisionCallback(validation_data, num_classes)
 
+optimizer = Adam(learning_rate=0.001)
 
 model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy',metrics=['accuracy'])
-
 
 
 history = model.fit(training_data, validation_data=validation_data, epochs=50,
                     callbacks=[ap_callback,lr_plateau, early_stopping])
 
 
-# In[28]:
 
 
 # Go up one level to reach project root (same as src/parent)
@@ -181,7 +170,7 @@ plt.savefig(save_path / "exp11_loss_acc.png", dpi=300, bbox_inches='tight')
 plt.close()
 
 
-model.save('../models/model_127_species_exp7.h5')
+model.save('../models/model_127_species_exp11.h5')
 
 
 
