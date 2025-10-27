@@ -1,13 +1,6 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[26]:
-
-
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
-get_ipython().run_line_magic('matplotlib', 'inline')
 from matplotlib import image
 
 import sys
@@ -35,35 +28,18 @@ from tools.metrics import AveragePrecisionCallback
 
 # Note: Use conda tf-gpu environment. Copy of exp10 with more data (page 3 in api request)
 
-# In[5]:
-
 
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
-# In[6]:
-
-
 spec_dir = '../data/image_data/'
-sample_dir = '../data/image_data/Polistes_dominula/'
-
-paths_sample_plot = [join(sample_dir, f) for f in listdir(sample_dir) if isfile(join(sample_dir, f))]
 
 
-# Define Batch size
-
-# In[14]:
-
-
-num_classes = 130
+num_classes = 129
 batch_size = 32
+exp_no = 12
+num_epochs = 50
 
-
-# ## B - <a name="generateurs"></a> Data Generators
-# 
-# 
-
-# In[8]:
 
 
 train_data_generator = ImageDataGenerator(rescale = 1./255,
@@ -84,11 +60,6 @@ test_data_generator  = ImageDataGenerator(rescale = 1./255)
 data_generator  = ImageDataGenerator(rescale = 1./255)
 
 
-# - (d) Implement ```training_data```, ```valid_data``` splits
-# 
-
-# In[9]:
-
 
 training_data  = train_data_generator.flow_from_directory(directory = spec_dir,
                                                    target_size = (224, 224),
@@ -107,12 +78,6 @@ validation_data  = val_data_generator.flow_from_directory(directory = spec_dir,
 #                                                   class_mode = 'binary',
 #                                                   batch_size = batch_size)
 
-
-# # II - <a name="classif"></a> Classification
-# 
-# 
-
-# In[19]:
 
 
 # Model MobileNet
@@ -136,15 +101,14 @@ for layer in reversed(base_model.layers):
 """
 
 model = Sequential()
-model.add(base_model) # Ajout du modèl
+model.add(base_model) 
 model.add(GlobalAveragePooling2D())
-model.add(Dropout(rate=0.3))
-model.add(Dense(units=1024, activation='relu'))
+#model.add(Dropout(rate=0.3))
+#model.add(Dense(units=1024, activation='relu'))
 model.add(Dense(num_classes, activation='softmax'))
 
 
-# In[20]:
-
+# Callbacks
 
 early_stopping = callbacks.EarlyStopping(monitor = 'val_accuracy',
                                          patience = 10,
@@ -159,32 +123,20 @@ lr_plateau = callbacks.ReduceLROnPlateau(monitor = 'val_accuracy',
                                          min_lr = 1e-10)
 
 
-# In[21]:
 
-
-optimizer = Adam(learning_rate=0.001) 
-
-
-# In[27]:
 
 
 ap_callback = AveragePrecisionCallback(validation_data, num_classes)
 
-
-# In[23]:
-
+optimizer = Adam(learning_rate=0.001)
 
 model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy',metrics=['accuracy'])
 
 
-# In[25]:
-
-
-history = model.fit(training_data, validation_data=validation_data, epochs=1, 
+history = model.fit(training_data, validation_data=validation_data, epochs=num_epochs,
                     callbacks=[ap_callback,lr_plateau, early_stopping])
 
 
-# In[28]:
 
 
 # Go up one level to reach project root (same as src/parent)
@@ -214,19 +166,14 @@ plt.legend(['train', 'validation'], loc='right')
 
 # Save it to file (no display)
 plt.tight_layout()  # optional: improves spacing
-plt.savefig(save_path / "exp11_loss_acc.png", dpi=300, bbox_inches='tight')
+plt.savefig(save_path / f"exp{exp_no}_loss_acc.png", dpi=300, bbox_inches='tight')
 
 # Close the figure to free memory (important in notebooks)
 plt.close()
 
 
-# In[16]:
+model.save(f'../models/model_127_species_exp{exp_no}.h5')
 
-
-model.save('../models/model_127_species_exp7.h5')
-
-
-# In[ ]:
 
 
 
