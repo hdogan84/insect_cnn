@@ -16,7 +16,7 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import callbacks, Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, GlobalAveragePooling2D
-from keras.applications import MobileNet, EfficientNetB3
+from keras.applications import MobileNet, EfficientNetB0, ResNet50 
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import average_precision_score
 
@@ -34,8 +34,9 @@ spec_dir = '../data/image_data/'
 
 num_classes = 129
 batch_size = 32
-exp_no = 12
+exp_no = 13
 num_epochs = 50
+model_name = "ResNet50"
 
 
 
@@ -78,7 +79,10 @@ validation_data  = val_data_generator.flow_from_directory(directory = spec_dir,
 
 
 # Model MobileNet
-base_model = MobileNet(weights='imagenet', include_top=False)
+if model_name == "MobileNet":
+    base_model = MobileNet(weights='imagenet', include_top=False)
+elif model_name == "ResNet50":
+    base_model = ResNet50(weights='imagenet', include_top=False)
 
 # Freezer les couches
 #for layer in base_model.layers:
@@ -119,9 +123,6 @@ lr_plateau = callbacks.ReduceLROnPlateau(monitor = 'val_accuracy',
                                          min_lr = 1e-10)
 
 
-
-
-
 ap_callback = AveragePrecisionCallback(validation_data, num_classes)
 
 optimizer = Adam(learning_rate=0.001)
@@ -130,7 +131,7 @@ model.compile(optimizer=optimizer, loss='sparse_categorical_crossentropy',metric
 
 
 history = model.fit(training_data, validation_data=validation_data, epochs=num_epochs,
-                    callbacks=[ap_callback,lr_plateau, early_stopping])
+                    callbacks=[ap_callback, lr_plateau, early_stopping])
 
 
 
@@ -162,13 +163,13 @@ plt.legend(['train', 'validation'], loc='right')
 
 # Save it to file (no display)
 plt.tight_layout()  # optional: improves spacing
-plt.savefig(save_path / f"exp{exp_no}_loss_acc.png", dpi=300, bbox_inches='tight')
+plt.savefig(save_path / f"{model_name}_exp{exp_no}_loss_acc.png", dpi=300, bbox_inches='tight')
 
 # Close the figure to free memory (important in notebooks)
 plt.close()
 
 
-model.save(f'../models/model_127_species_exp{exp_no}.h5')
+model.save(f'../models/{model_name}_127_species_exp{exp_no}.h5')
 
 
 
