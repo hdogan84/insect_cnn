@@ -1,0 +1,6 @@
+{
+    "num_classes": 48050,
+    "batch_size": 32,
+    "num_epochs": 1,
+    "model_name": "MobileNetV2"
+}
