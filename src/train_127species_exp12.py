@@ -13,7 +13,7 @@ from os import listdir
 from os.path import isfile, join
 
 import tensorflow as tf
-
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import callbacks, Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, GlobalAveragePooling2D
 from keras.applications import MobileNet, EfficientNetB3
@@ -27,9 +27,6 @@ from tools.metrics import AveragePrecisionCallback
 
 
 # Note: Use conda tf-gpu environment. Copy of exp10 with more data (page 3 in api request)
-
-
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
 
 
 spec_dir = '../data/image_data/'
@@ -109,7 +106,6 @@ model.add(Dense(num_classes, activation='softmax'))
 
 
 # Callbacks
-
 early_stopping = callbacks.EarlyStopping(monitor = 'val_accuracy',
                                          patience = 10,
                                          mode = 'max',
