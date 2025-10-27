@@ -16,7 +16,7 @@ import tensorflow as tf
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras import callbacks, Sequential
 from tensorflow.keras.layers import Dense, Dropout, Flatten, Conv2D, GlobalAveragePooling2D
-from keras.applications import MobileNet, EfficientNetB0, ResNet50 
+from keras.applications import MobileNet, EfficientNetV2B0, ResNet50, ResNet50V2
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import average_precision_score
 
@@ -26,7 +26,7 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 from tools.metrics import AveragePrecisionCallback
 
 
-# Note: Use conda tf-gpu environment. Copy of exp10 with more data (page 3 in api request)
+# Note: Use conda tf-gpu environment. 
 
 
 spec_dir = '../data/image_data/'
@@ -36,7 +36,7 @@ num_classes = 129
 batch_size = 32
 exp_no = 13
 num_epochs = 50
-model_name = "ResNet50"
+model_name = "EfficientNetV2B0"
 
 
 
@@ -83,6 +83,8 @@ if model_name == "MobileNet":
     base_model = MobileNet(weights='imagenet', include_top=False)
 elif model_name == "ResNet50":
     base_model = ResNet50(weights='imagenet', include_top=False)
+elif model_name == "EfficientNetV2B0":
+    base_model = EfficientNetV2B0(weights='imagenet', include_top=False)
 
 # Freezer les couches
 #for layer in base_model.layers:
