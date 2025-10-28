@@ -39,7 +39,7 @@ spec_dir = '../data/image_data/'
 
 batch_size = 32
 exp_no = 1
-num_epochs = 1
+num_epochs = 50
 model_name = "MobileNetV2"
 
 
