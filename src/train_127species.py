@@ -5,7 +5,7 @@ from matplotlib import image
 
 import sys
 from pathlib import Path
-import json
+import json, random
 
 sys.path.append(str(Path().resolve().parent))
 #sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -27,9 +27,14 @@ warnings.filterwarnings("ignore", category=UserWarning, module="sklearn")
 from tools.metrics import AveragePrecisionCallback
 from tools.plot_model_results import plot_train_val_acc_loss
 
+seed_value = 42
+os.environ["PYTHONHASHSEED"] = str(seed_value)
+random.seed(seed_value)
+np.random.seed(seed_value)
+tf.random.set_seed(seed_value)
+
 
 # Note: Use conda tf-gpu environment. 
-# Define paths (example: project_root/config/)
 project_root = Path().resolve().parent
 config_dir = project_root / "config"
 config_dir.mkdir(parents=True, exist_ok=True)
