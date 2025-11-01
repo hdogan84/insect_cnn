@@ -88,7 +88,7 @@ class_labels = list(validation_data.class_indices.keys())
 
 print(pred_probs.shape)
 print(len(validation_data.classes))
-print(np.unique(pred_classes))
+#print(np.unique(pred_classes))
 
 
 # -------------------------------
@@ -96,11 +96,14 @@ print(np.unique(pred_classes))
 # -------------------------------
 # Define save path for figures
 save_path = project_root / "results" / "figures"
-cm = confusion_matrix(true_classes, pred_classes)
-plt.figure(figsize=(10, 8))
-sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
-            xticklabels=class_labels,
-            yticklabels=class_labels)
+
+cm = np.round( confusion_matrix(true_classes, pred_classes, normalize = 'true'), 2 )
+
+plt.figure(figsize=(36, 36))
+sns.heatmap(cm, annot = True, cmap = plt.cm.Blues, xticklabels = class_labels, 
+                yticklabels = class_labels, cbar= False, square = True, 
+                annot_kws = {"size": 6}, linewidths = 1, linecolor = 'black')
+
 plt.title("Confusion Matrix")
 plt.xlabel("Predicted Class")
 plt.ylabel("True Class")

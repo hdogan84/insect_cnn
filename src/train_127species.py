@@ -160,7 +160,7 @@ save_path.mkdir(parents=True, exist_ok=True)
 plot_train_val_acc_loss(history, save_path, model_name, exp_no)
 
 
-model.save(f'../models/{model_name}_127_species_exp{exp_no}.h5')
+model.save(f'../models/{model_name}_exp{exp_no}.h5')
 
 
 
