@@ -137,8 +137,13 @@ if __name__ == '__main__':
         (124145, 'Xylocopa_violacea')
     ]
 
-    page_num = 1
-    per_page = 100
+    ind_spec = [
+        (325997, 'Bombus_muscorum'),
+    ]
+
+
+    page_num = 2
+    per_page = 200
 
 
     for ind, spec in ind_spec:

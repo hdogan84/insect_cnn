@@ -302,7 +302,7 @@ if __name__ == '__main__':
         print('\n******** ' + spec + ' ********\n')
         search_and_download(search_term = str(spec),
                             target_path = 'C:\\Users\\dgnhk\\insect_cnn\\data\\image_data\\' + spec,
-                            number_images = 6)
+                            number_images = 500)
     
     
     

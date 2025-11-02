@@ -40,14 +40,14 @@ gbif_id,Latine_name,taxon_id
 1338442,Coelioxys echinata,626780
 1338640,Coelioxys aurolimbata,1061530
 1339951,Amegilla atrocincta,424361
-1340286,Bombus muscorum,1600451
+1340286,Bombus muscorum,325997
 1340301,Bombus lapidarius,57619
 1340305,Bombus pratorum,124910
 1340342,Bombus sylvarum,123657
 1340344,Bombus rupestris,127735
 1340394,Bombus ruderarius,53524
 1340405,Bombus pascuorum,55637
-1340418,Bombus vestalis,1592220
+1340418,Bombus vestalis,127789
 1340434,Bombus barbutellus,481191
 1340503,Bombus terrestris,57516
 1340527,Bombus campestris,127779
@@ -89,7 +89,7 @@ gbif_id,Latine_name,taxon_id
 4452252,Psyllobora vigintiduopunctata,51660
 4459737,Chrysomela populi,416809
 4470628,Carabus auronitens,325782
-4485729,Graphosoma lineatum,546359
+4485729,Graphosoma lineatum,61968
 4485776,Palomena prasina,62060
 4486826,Pyrrhocoris apterus,55610
 4493809,Chrysura austriaca,1104831
