@@ -29,7 +29,8 @@ from PIL import Image
 DRIVER_PATH = r'C:\Users\dgnhk\Downloads\geckodriver-v0.36.0-win64\geckodriver.exe'
 DRIVER_PATH = r'C:\Users\dgnhk\.wdm\drivers\geckodriver\win64\v0.36.0\geckodriver.exe'
 
-def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int = 5):
+
+def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int = 10):
     """Find and store the image urls.
     
     :param query: Species ID to complete the url.
@@ -52,15 +53,12 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int 
     # Only load fotos marked with Research Grade and CC-BY-NC copyright
     page_num = 1 # current page number
     if page_num == 1:
-        search_url = f"https://www.inaturalist.org/observations?photo_license=CC-BY-NC&place_id=any&quality_grade=research&subview=table&taxon_id={query}"
+        search_url = f"https://www.inaturalist.org/observations?quality_grade=research&subview=table&taxon_id={query}"
     else:
-        search_url = f"https://www.inaturalist.org/observations?page={page_num}&photo_license=CC-BY-NC&place_id=any&quality_grade=research&subview=table&taxon_id={query}"
+        search_url = f"https://www.inaturalist.org/observations?page={page_num}&quality_grade=research&subview=table&taxon_id={query}"
     
     # Just for Sarcophaga carnaria
-    search_url = "https://www.inaturalist.org/observations?preferred_place_id=7207&quality_grade=research&subview=table&taxon_id=124550"
-
-    search_url = f"https://www.inaturalist.org/observations?taxon_name={query}&quality_grade=research&subview=table"
-
+    #search_url = "https://www.inaturalist.org/observations?preferred_place_id=7207&quality_grade=research&subview=table&taxon_id=124550"
 
     wd.get(search_url)
     time.sleep(sleep)  
@@ -296,11 +294,26 @@ if __name__ == '__main__':
         #(124145, 'Xylocopa_violacea')
     ]
 
+    ind_spec = [
+        #(546385, "Dolichovespula_omissa"), 
+        #(465288, "Dolichovespula_adulterina"),
+        #(1061530, "Coelioxys_aurolimbatus"),
+        #(127809,  "Megachile_versicolor"),
+        #(127776,  "Trypoxylon_figulus"),
+        #(233557,  "Vespula_austriaca"),
+        (486782,  "Neoascia_podagrica"),
+        (484583,  "Stelis_breviuscula"),
+        (484588,  "Osmia_leaiana"),
+        (962039,  "Osmia_brevicornis"),
+        (127737,  "Colletes_daviesanus"),
+    ]
+
     for ind, spec in ind_spec:
         
         print('\n******** ' + spec + ' ********\n')
-        search_and_download(search_term = str(spec),
-                            target_path = 'C:\\Users\\dgnhk\\insect_cnn\\data\\image_data\\' + spec,
+        search_and_download(search_term = str(ind),
+                            #target_path = 'Z:\data\Bees\\' + spec, 
+                            target_path = 'C:\\Users\\dgnhk\\insect-cnn\\data\\image_data\\' + spec,
                             number_images = 500)
     
     
