@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from matplotlib import image
 
-import sys
+import sys, os
 from pathlib import Path
 import json, random
 
@@ -43,8 +43,8 @@ spec_dir = '../data/image_data/'
 
 
 batch_size = 32
-exp_no = 1
-num_epochs = 50
+exp_no = 2
+num_epochs = 60
 model_name = "MobileNetV2"
 
 
