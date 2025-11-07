@@ -42,10 +42,10 @@ spec_dir = '../data/image_data/'
 
 
 
-batch_size = 32
-exp_no = 2
+batch_size = 64
+exp_no = 3
 num_epochs = 60
-model_name = "MobileNetV2"
+model_name = "MobileNet"
 
 
 train_data_generator = ImageDataGenerator(rescale = 1./255,
