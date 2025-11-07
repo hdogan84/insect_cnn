@@ -96,8 +96,11 @@ print(len(validation_data.classes))
 # -------------------------------
 # Define save path for figures
 save_path = project_root / "results" / "figures"
+metrics_save_path = project_root / "results" / "metrics"
 
 cm = np.round( confusion_matrix(true_classes, pred_classes, normalize = 'true'), 2 )
+per_class_accuracy = np.diag(cm)
+np.save(metrics_save_path / f"Exp{exp_no}_per_class_accuracy.npy", per_class_accuracy)
 
 plt.figure(figsize=(36, 36))
 sns.heatmap(cm, annot = True, cmap = plt.cm.Blues, xticklabels = class_labels, 
