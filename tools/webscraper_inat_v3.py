@@ -89,7 +89,7 @@ def fetch_image_urls(query:str, max_links_to_fetch:int, wd:webdriver, sleep:int 
             
             if page_num < num_pages:
                 page_num += 1
-                search_url = f"https://www.inaturalist.org/observations?page={page_num}&photo_license=CC-BY-NC&place_id=any&quality_grade=research&subview=table&taxon_id={query}" 
+                search_url = f"https://www.inaturalist.org/observations?page={page_num}&quality_grade=research&subview=table&taxon_id={query}" 
                 print('\nLoading next page...\n')
                 wd.get(search_url)
                 
@@ -308,13 +308,18 @@ if __name__ == '__main__':
         (127737,  "Colletes_daviesanus"),
     ]
 
+    ind_spec = [
+        (481191, "Bombus_barbutellus"), 
+        (497967, "Passaloecus_eremita"),
+    ]
+
     for ind, spec in ind_spec:
         
         print('\n******** ' + spec + ' ********\n')
         search_and_download(search_term = str(ind),
                             #target_path = 'Z:\data\Bees\\' + spec, 
-                            target_path = 'C:\\Users\\dgnhk\\insect-cnn\\data\\image_data\\' + spec,
-                            number_images = 500)
+                            target_path = 'C:\\Users\\dgnhk\\Insect-CNN\\data\\image_data\\' + spec,
+                            number_images = 1000)
     
     
     
