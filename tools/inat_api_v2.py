@@ -31,7 +31,6 @@ def get_urls_from_api(taxa_id:int, page_num: int = 1, per_page: int = 5):
         "taxon_id": taxa_id,   
         "per_page": per_page, # Max per page seems to be 200
         "page": page_num,
-        "order_by": "created_at"
     }
     response = requests.get(url, params=params)
     data = response.json()
@@ -141,6 +140,10 @@ if __name__ == '__main__':
         (325997, 'Bombus_muscorum'),
     ]
 
+    ind_spec = [
+        (61968, 'Graphosoma_lineatum'),
+    ]
+
 
     page_num = 2
     per_page = 200
@@ -151,7 +154,8 @@ if __name__ == '__main__':
         print('\n******** ' + spec + ' ********\n')
         search_and_download(search_ind = ind,
                             #target_path = 'Z:\data\Bees\\' + spec, 
-                            target_path = 'C:\\Users\dgnhk\\Insect-CNN\data\image_data\\' + spec,
+                            #target_path = 'C:\\Users\dgnhk\\Insect-CNN\data\image_data\\' + spec,
+                            target_path = '/home/hakandogan/projects/Insect-CNN/data/image_data/' + spec,
                             page_num = page_num,
                             number_images = per_page)
 

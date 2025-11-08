@@ -35,7 +35,7 @@ config_dir = project_root / "config"
 model_dir = project_root / "models"
 spec_dir = "../data/image_data"
 
-exp_no = 2
+exp_no = 3
 
 # -------------------------------
 # 1. Load Json config and the Val Dataset
@@ -103,14 +103,31 @@ pred_probs = model.predict(test_data)
 pred_classes = np.argmax(pred_probs, axis=1)
 true_classes = test_data.classes
 
+from sklearn.preprocessing import label_binarize
+y_true_onehot = label_binarize(true_classes, classes=np.arange(126))
+
+present_classes = np.unique(true_classes)
+print("Classes present in test set:", len(present_classes))
+
+# Compute per-class AP for all classes
+per_class_ap = []
+for c in present_classes:
+    ap_c = average_precision_score(y_true_onehot[:, c], pred_probs[:, c])
+    per_class_ap.append(ap_c)
+
+print("Per class Average precision:", per_class_ap)
+
+ap = average_precision_score(y_true_onehot, pred_probs, average="macro")
+print("Average precision (mAP):", ap)
+
 unique_classes = sorted(set(int(i) for i in true_classes) | set(int(i) for i in pred_classes))
 print("Unique class IDs:", unique_classes)
 
-# 2️⃣ Create mapping old_index -> new_index (0..N-1)
+# Create mapping old_index -> new_index (0..N-1)
 mapping = {old: new for new, old in enumerate(unique_classes)}
 print("Mapping:", mapping)
 
-# 3️⃣ Map both arrays
+# Map both arrays
 true_classes_mapped = np.array([mapping[i] for i in true_classes])
 pred_classes_mapped = np.array([mapping[i] for i in pred_classes])
 
@@ -154,7 +171,7 @@ report = classification_report(
     target_names=class_labels
 )
 
-output_path = metrics_save_path / f"Exp{exp_no}_classification_report.txt"
+output_path = metrics_save_path / f"Exp{exp_no}_classification_report_test.txt"
 
 # Write it to a file
 with open(output_path, "w") as f:

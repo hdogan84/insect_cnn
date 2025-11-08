@@ -100,7 +100,7 @@ metrics_save_path = project_root / "results" / "metrics"
 
 cm = np.round( confusion_matrix(true_classes, pred_classes, normalize = 'true'), 2 )
 per_class_accuracy = np.diag(cm)
-np.save(metrics_save_path / f"Exp{exp_no}_per_class_accuracy.npy", per_class_accuracy)
+np.save(metrics_save_path / f"Exp{exp_no}_per_class_accuracy_validation.npy", per_class_accuracy)
 
 plt.figure(figsize=(36, 36))
 sns.heatmap(cm, annot = True, cmap = plt.cm.Blues, xticklabels = class_labels, 
@@ -119,7 +119,13 @@ plt.close()
 # -------------------------------
 # 6. Optional: Classification report
 # -------------------------------
-print("\nClassification Report:\n")
-print(classification_report(true_classes, pred_classes, target_names=class_labels))
 
+report = classification_report(true_classes, pred_classes, target_names=class_labels)
 
+output_path = metrics_save_path / f"Exp{exp_no}_classification_report_validation.txt"
+
+# Write it to a file
+with open(output_path, "w") as f:
+    f.write("Classification Report\n")
+    f.write("=====================\n\n")
+    f.write(report)
