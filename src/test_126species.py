@@ -35,7 +35,7 @@ config_dir = project_root / "config"
 model_dir = project_root / "models"
 spec_dir = "../data/image_data"
 
-exp_no = 3
+exp_no = 4
 
 # -------------------------------
 # 1. Load Json config and the Val Dataset
