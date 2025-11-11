@@ -181,17 +181,16 @@ report = classification_report(
     output_dict=True
 )
 
-filtered_report = {
-    label: {
-        **report[label],
-        "average_precision": per_class_ap[i]
-    }
-    for i, label in enumerate(list(test_data.class_indices.keys()))
-}
+import copy
+filtered_report = copy.deepcopy(report)
 
-"""for key in ("macro avg", "weighted avg", "accuracy"):
-    if key in report:
-        filtered_report[key] = report[key]"""
+for label in list(report.keys()):
+    if label not in list(test_data.class_indices.keys()):
+        del filtered_report[label]
+
+for i, label in enumerate(list(test_data.class_indices.keys())):
+    filtered_report[label]["Avg. Precision"] = per_class_ap[i]
+
 
 output_path = metrics_save_path / f"Exp{exp_no}_classification_report_test.txt"
 
@@ -199,7 +198,7 @@ output_path = metrics_save_path / f"Exp{exp_no}_classification_report_test.txt"
 all_metrics = list(next(iter(filtered_report.values())).keys())
 
 # define column widths
-label_width = 27
+label_width = 25
 metric_width = 15
 
 # header line
@@ -219,8 +218,3 @@ for label, metrics in filtered_report.items():
 # join all lines and write to file
 with open(output_path, "w") as f:
     f.write("\n".join(lines))
-
-
-
-
-
