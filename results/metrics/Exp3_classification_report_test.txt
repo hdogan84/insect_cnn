@@ -1,65 +1,22 @@
-Classification Report
-=====================
-
-                               precision    recall  f1-score   support
-
-               Apis_mellifera       0.65      0.63      0.64        59
-           Bombus_barbutellus       0.00      0.00      0.00        66
-              Bombus_hortorum       0.00      0.00      0.00         0
-            Bombus_lapidarius       1.00      0.70      0.82        82
-              Bombus_muscorum       0.00      0.00      0.00         0
-              Bombus_pratorum       0.00      0.00      0.00         0
-            Bombus_ruderarius       0.00      0.00      0.00         0
-            Bombus_terrestris       0.83      0.55      0.67       247
-              Bombus_vestalis       0.00      0.00      0.00         0
-            Calliphora_vicina       0.00      0.00      0.00         0
-               Cetonia_aurata       1.00      1.00      1.00        67
-            Coreus_marginatus       0.00      0.00      0.00         0
-    Dolichovespula_adulterina       0.00      0.00      0.00         0
-         Dolichovespula_media       0.00      0.00      0.00         0
-     Dolichovespula_norwegica       0.00      0.00      0.00         0
-      Dolichovespula_saxonica       0.12      0.56      0.20        41
-    Dolichovespula_sylvestris       0.80      0.17      0.28        24
-      Drosophila_melanogaster       0.00      0.00      0.00         0
-         Episyrphus_balteatus       0.77      0.43      0.56        23
-              Eristalis_tenax       1.00      0.79      0.88       129
-          Graphosoma_italicum       0.00      0.00      0.00         0
-          Graphosoma_lineatum       1.00      0.00      0.01       259
-        Haematopota_pluvialis       0.00      0.00      0.00         0
-                Lasius_flavus       0.00      0.00      0.00         0
-                 Lasius_niger       0.00      0.00      0.00         0
-    Leptinotarsa_decemlineata       0.85      1.00      0.92        63
-    Leptoglossus_occidentalis       0.00      0.00      0.00         0
-            Leucozona_lucorum       0.00      0.00      0.00         0
-             Lilioceris_lilii       0.00      0.00      0.00         0
-         Megachile_ericetorum       0.00      0.00      0.00         0
-          Megachile_rotundata       0.00      0.00      0.00         0
-        Melolontha_melolontha       0.00      0.00      0.00         0
-              Musca_domestica       0.00      0.00      0.00         0
-             Myathropa_florea       0.00      0.00      0.00         0
-                Myrmica_rubra       0.00      0.00      0.00         0
-               Osmia_bicornis       0.00      0.00      0.00         0
-           Osmia_caerulescens       0.00      0.00      0.00         0
-             Panorpa_communis       1.00      0.81      0.89        21
-          Passaloecus_eremita       0.00      0.00      0.00         6
-        Plodia_interpunctella       0.00      0.00      0.00         0
-            Polistes_dominula       0.94      0.80      0.86        20
-            Polistes_gallicus       0.00      0.00      0.00         0
-Psyllobora_vigintiduopunctata       0.00      0.00      0.00         0
-          Pyrrhocoris_apterus       0.00      0.00      0.00         0
-          Sarcophaga_carnaria       1.00      0.34      0.51        44
-              Scaeva_pyrastri       1.00      0.89      0.94        27
-              Syrphus_ribesii       0.00      0.00      0.00        15
-              Tabanus_bromius       0.00      0.00      0.00         0
-                 Vespa_crabro       1.00      0.95      0.98       287
-               Vespa_velutina       0.00      0.00      0.00         0
-            Vespula_austriaca       0.00      0.00      0.00         0
-            Vespula_germanica       0.82      0.84      0.83        81
-                 Vespula_rufa       0.00      0.00      0.00         0
-             Vespula_vulgaris       0.80      0.34      0.47       255
-             Volucella_inanis       0.00      0.00      0.00         0
-            Xylocopa_violacea       1.00      1.00      1.00        16
-
-                     accuracy                           0.56      1832
-                    macro avg       0.28      0.21      0.22      1832
-                 weighted avg       0.85      0.56      0.60      1832
+Class                          precision         recall       f1-score        support Avg. Precision
+Apis_mellifera                      0.65           0.63           0.64          59.00           0.66
+Bombus_barbutellus                  0.00           0.00           0.00          66.00           0.13
+Bombus_lapidarius                   1.00           0.70           0.82          82.00           1.00
+Bombus_terrestris                   0.83           0.55           0.67         247.00           0.79
+Cetonia_aurata                      1.00           1.00           1.00          67.00           1.00
+Dolichovespula_saxonica             0.12           0.56           0.20          41.00           0.14
+Dolichovespula_sylvestris           0.80           0.17           0.28          24.00           0.41
+Episyrphus_balteatus                0.77           0.43           0.56          23.00           0.69
+Eristalis_tenax                     1.00           0.79           0.88         129.00           0.99
+Graphosoma_lineatum                 1.00           0.00           0.01         259.00           0.76
+Leptinotarsa_decemlineata           0.85           1.00           0.92          63.00           1.00
+Panorpa_communis                    1.00           0.81           0.89          21.00           0.96
+Passaloecus_eremita                 0.00           0.00           0.00           6.00           0.02
+Polistes_dominula                   0.94           0.80           0.86          20.00           0.99
+Sarcophaga_carnaria                 1.00           0.34           0.51          44.00           0.81
+Scaeva_pyrastri                     1.00           0.89           0.94          27.00           0.95
+Syrphus_ribesii                     0.00           0.00           0.00          15.00           0.06
+Vespa_crabro                        1.00           0.95           0.98         287.00           1.00
+Vespula_germanica                   0.82           0.84           0.83          81.00           0.92
+Vespula_vulgaris                    0.80           0.34           0.47         255.00           0.77
+Xylocopa_violacea                   1.00           1.00           1.00          16.00           1.00

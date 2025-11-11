@@ -1,61 +1,22 @@
-Classification Report
-=====================
-
-                           precision    recall  f1-score   support
-
-         Andrena_flavipes       0.00      0.00      0.00         0
-           Apis_mellifera       0.50      0.88      0.64        59
-              Bibio_marci       0.00      0.00      0.00         0
-       Bombus_barbutellus       0.00      0.00      0.00        66
-          Bombus_hortorum       0.00      0.00      0.00         0
-        Bombus_lapidarius       1.00      0.80      0.89        82
-          Bombus_pratorum       0.00      0.00      0.00         0
-        Bombus_ruderarius       0.00      0.00      0.00         0
-        Bombus_terrestris       0.86      0.89      0.87       247
-          Bombus_vestalis       0.00      0.00      0.00         0
-        Calliphora_vicina       0.00      0.00      0.00         0
-           Cetonia_aurata       1.00      0.97      0.98        67
-Coccinella_septempunctata       0.00      0.00      0.00         0
-        Coreus_marginatus       0.00      0.00      0.00         0
-Dolichovespula_adulterina       0.00      0.00      0.00         0
-     Dolichovespula_media       0.00      0.00      0.00         0
- Dolichovespula_norwegica       0.00      0.00      0.00         0
-  Dolichovespula_saxonica       0.13      0.73      0.22        41
-Dolichovespula_sylvestris       0.64      0.29      0.40        24
-  Drosophila_melanogaster       0.00      0.00      0.00         0
-     Episyrphus_balteatus       0.50      0.13      0.21        23
-          Eristalis_tenax       1.00      0.81      0.89       129
-      Graphosoma_italicum       0.00      0.00      0.00         0
-      Graphosoma_lineatum       1.00      0.10      0.18       259
-    Haematopota_pluvialis       0.00      0.00      0.00         0
-            Lasius_flavus       0.00      0.00      0.00         0
-             Lasius_niger       0.00      0.00      0.00         0
-Leptinotarsa_decemlineata       0.90      0.95      0.92        63
-Leptoglossus_occidentalis       0.00      0.00      0.00         0
-         Lilioceris_lilii       0.00      0.00      0.00         0
-     Megachile_ericetorum       0.00      0.00      0.00         0
-      Melanostoma_scalare       0.00      0.00      0.00         0
-          Musca_domestica       0.00      0.00      0.00         0
-         Myathropa_florea       0.00      0.00      0.00         0
-            Myrmica_rubra       0.00      0.00      0.00         0
-           Osmia_bicornis       0.00      0.00      0.00         0
-        Osmia_brevicornis       0.00      0.00      0.00         0
-         Panorpa_communis       1.00      0.86      0.92        21
-      Passaloecus_eremita       0.00      0.00      0.00         6
-    Plodia_interpunctella       0.00      0.00      0.00         0
-        Polistes_dominula       1.00      0.65      0.79        20
-        Polistes_gallicus       0.00      0.00      0.00         0
-      Sarcophaga_carnaria       1.00      0.34      0.51        44
-          Scaeva_pyrastri       1.00      0.89      0.94        27
-          Syrphus_ribesii       0.00      0.00      0.00        15
-        Tabanus_sudeticus       0.00      0.00      0.00         0
-             Vespa_crabro       0.99      0.96      0.98       287
-           Vespa_velutina       0.00      0.00      0.00         0
-        Vespula_austriaca       0.00      0.00      0.00         0
-        Vespula_germanica       0.86      0.83      0.84        81
-         Vespula_vulgaris       0.73      0.16      0.26       255
-        Xylocopa_violacea       1.00      1.00      1.00        16
-
-                 accuracy                           0.60      1832
-                macro avg       0.29      0.24      0.24      1832
-             weighted avg       0.84      0.60      0.63      1832
+Class                          precision         recall       f1-score        support Avg. Precision
+Apis_mellifera                      0.50           0.88           0.64          59.00           0.72
+Bombus_barbutellus                  0.00           0.00           0.00          66.00           0.15
+Bombus_lapidarius                   1.00           0.80           0.89          82.00           1.00
+Bombus_terrestris                   0.86           0.89           0.87         247.00           0.79
+Cetonia_aurata                      1.00           0.97           0.98          67.00           1.00
+Dolichovespula_saxonica             0.13           0.73           0.22          41.00           0.16
+Dolichovespula_sylvestris           0.64           0.29           0.40          24.00           0.45
+Episyrphus_balteatus                0.50           0.13           0.21          23.00           0.37
+Eristalis_tenax                     1.00           0.81           0.89         129.00           0.99
+Graphosoma_lineatum                 1.00           0.10           0.18         259.00           0.98
+Leptinotarsa_decemlineata           0.90           0.95           0.92          63.00           0.98
+Panorpa_communis                    1.00           0.86           0.92          21.00           0.88
+Passaloecus_eremita                 0.00           0.00           0.00           6.00           0.02
+Polistes_dominula                   1.00           0.65           0.79          20.00           0.97
+Sarcophaga_carnaria                 1.00           0.34           0.51          44.00           0.76
+Scaeva_pyrastri                     1.00           0.89           0.94          27.00           0.99
+Syrphus_ribesii                     0.00           0.00           0.00          15.00           0.08
+Vespa_crabro                        0.99           0.96           0.98         287.00           1.00
+Vespula_germanica                   0.86           0.83           0.84          81.00           0.92
+Vespula_vulgaris                    0.73           0.16           0.26         255.00           0.69
+Xylocopa_violacea                   1.00           1.00           1.00          16.00           1.00
