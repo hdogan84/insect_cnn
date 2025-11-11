@@ -35,7 +35,7 @@ config_dir = project_root / "config"
 model_dir = project_root / "models"
 spec_dir = "../data/image_data"
 
-exp_no = 4
+exp_no = 44
 
 # -------------------------------
 # 1. Load Json config and the Val Dataset
@@ -80,8 +80,14 @@ test_to_train_index = {test_idx: validation_data.class_indices[cls_name]
 
 test_data.classes = np.array([test_to_train_index[i] for i in test_data.classes])
 
+print(f"Test data classes are: {test_data.classes[:15]}")
+
 subset_class_indices = {k: v for k, v in validation_data.class_indices.items() if k in test_data.class_indices}
 test_data.class_indices = subset_class_indices
+
+print(f"Test data class indices are: {list(test_data.class_indices.items())[:15]}")
+
+
 
 # -------------------------------
 # 2. Load the saved model
@@ -117,8 +123,8 @@ for c in present_classes:
 
 print("Per class Average precision:", per_class_ap)
 
-ap = average_precision_score(y_true_onehot, pred_probs, average="macro")
-print("Average precision (mAP):", ap)
+#ap = average_precision_score(y_true_onehot, pred_probs, average="macro")
+print("Average precision (mAP):", np.mean(per_class_ap))
 
 unique_classes = sorted(set(int(i) for i in true_classes) | set(int(i) for i in pred_classes))
 print("Unique class IDs:", unique_classes)
@@ -130,6 +136,9 @@ print("Mapping:", mapping)
 # Map both arrays
 true_classes_mapped = np.array([mapping[i] for i in true_classes])
 pred_classes_mapped = np.array([mapping[i] for i in pred_classes])
+
+#print("True classes mapped are: ")
+#print(true_classes_mapped)
 
 
 # slice the class names using unique_classes
@@ -168,16 +177,49 @@ plt.close()
 report = classification_report(
     true_classes_mapped,
     pred_classes_mapped,
-    target_names=class_labels
+    target_names=class_labels,
+    output_dict=True
 )
+
+filtered_report = {
+    label: {
+        **report[label],
+        "average_precision": per_class_ap[i]
+    }
+    for i, label in enumerate(list(test_data.class_indices.keys()))
+}
+
+"""for key in ("macro avg", "weighted avg", "accuracy"):
+    if key in report:
+        filtered_report[key] = report[key]"""
 
 output_path = metrics_save_path / f"Exp{exp_no}_classification_report_test.txt"
 
 # Write it to a file
+all_metrics = list(next(iter(filtered_report.values())).keys())
+
+# define column widths
+label_width = 27
+metric_width = 15
+
+# header line
+header = "Class".ljust(label_width) + "".join(f"{m:>{metric_width}}" for m in all_metrics)
+
+lines = [header]
+for label, metrics in filtered_report.items():
+    line = label.ljust(label_width)
+    for m in all_metrics:
+        val = metrics[m]
+        if isinstance(val, (int, float)):
+            line += f"{val:{metric_width}.2f}"
+        else:
+            line += f"{str(val):>{metric_width}}"
+    lines.append(line)
+
+# join all lines and write to file
 with open(output_path, "w") as f:
-    f.write("Classification Report\n")
-    f.write("=====================\n\n")
-    f.write(report)
+    f.write("\n".join(lines))
+
 
 
 
